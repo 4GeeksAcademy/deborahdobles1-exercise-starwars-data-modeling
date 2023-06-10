@@ -14,8 +14,6 @@ class User(Base):
     name = Column(String(80), nullable=False)
     email = Column(String(80), nullable=False)
     password = Column(String(250), nullable=False)
-    id_favorites = Column(Integer, ForeignKey('favorites.id'))
-    favorites = relationship('Favorites')
 
 class Favorites(Base):
     __tablename__ = 'favorites'
@@ -24,6 +22,8 @@ class Favorites(Base):
     name_planet = Column(String(250), nullable=False)
     id_character = Column(Integer, ForeignKey('characters.id'))
     name_character = Column(String(250), nullable=False)
+    id_user = Column(Integer, ForeignKey('user.id'))
+    user = relationship('User')
     planet = relationship('Planets')
     character = relationship('Characters')
 
